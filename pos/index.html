@@ -15,7 +15,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="/">
+  <base href="/pos">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -25,20 +25,20 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="onSecondary">
   <meta name="apple-mobile-web-app-title" content="hl7pos_full">
-  <link rel="apple-touch-icon" href="pos/icons/Icon-192.png">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="pos/favicon.png" />
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>hl7pos_full</title>
-  <link rel="manifest" href="pos/manifest.json">
+  <link rel="manifest" href="manifest.json">
 
   <script>
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = '393326901';
   </script>
   <!-- This script adds the flutter initialization JS code -->
-  <script src="pos/flutter.js" defer></script>
+  <script src="flutter.js" defer></script>
 </head>
 
 <body>
@@ -50,7 +50,12 @@
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded: async function (engineInitializer) {
-          await engineInitializer.autoStart();
+          // await engineInitializer.autoStart();
+          loading.textContent = "Initializing engine...";
+          let appRunner = await engineInitializer.initializeEngine();
+
+          loading.textContent = "Running app...";
+          await appRunner.runApp();
         }
       }).then(function (engineInitializer) {
         return engineInitializer.initializeEngine();
