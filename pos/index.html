@@ -48,7 +48,8 @@
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
-        }, onEntrypointLoaded: async function (engineInitializer) {
+        },
+        onEntrypointLoaded: async function (engineInitializer) {
           await engineInitializer.autoStart();
         }
       }).then(function (engineInitializer) {
